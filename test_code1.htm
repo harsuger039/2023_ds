@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  .rotating-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+  }
+
+  .rotating-button.rotating {
+    animation: rotate 2s infinite linear, changeColor 2s infinite;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes changeColor {
+    0% {
+      background-color: red;
+    }
+    14.28% {
+      background-color: orange;
+    }
+    28.57% {
+      background-color: yellow;
+    }
+    42.85% {
+      background-color: green;
+    }
+    57.14% {
+      background-color: blue;
+    }
+    71.42% {
+      background-color: indigo;
+    }
+    85.71% {
+      background-color: violet;
+    }
+    100% {
+      background-color: red;
+    }
+  }
+</style>
+</head>
+<body>
+
+<button class="rotating-button" onclick="createNewButton()">Click me</button>
+
+<script>
+  function createNewButton() {
+    const originalButton = document.querySelector('.rotating-button');
+    const newButton = originalButton.cloneNode(true);
+    newButton.classList.add('rotating');
+
+    document.body.appendChild(newButton);
+  }
+</script>
+
+</body>
+</html>
