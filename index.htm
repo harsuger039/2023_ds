@@ -1,37 +1,71 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Rainbow Text</title>
-    <style>
-      #text {
-        font-size: 24px;
-        transition: color 0.5s;
-      }
-    </style>
-  </head>
-  <body>
-    <button onclick="showRainbowText()">ƒ{ƒ^ƒ“‚ð‰Ÿ‚·</button>
-    <p id="text">Hello world</p>
+<head>
+<style>
+  .rotating-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+  }
 
-    <script>
-      function showRainbowText() {
-        var textElement = document.getElementById("text");
-        var colors = [
-          "red",
-          "orange",
-          "yellow",
-          "green",
-          "blue",
-          "indigo",
-          "violet"
-        ];
-        var currentColor = 0;
+  .rotating-button.rotating {
+    animation: rotate 2s infinite linear, changeColor 2s infinite;
+  }
 
-        setInterval(function() {
-          textElement.style.color = colors[currentColor];
-          currentColor = (currentColor + 1) % colors.length;
-        }, 500);
-      }
-    </script>
-  </body>
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes changeColor {
+    0% {
+      background-color: red;
+    }
+    14.28% {
+      background-color: orange;
+    }
+    28.57% {
+      background-color: yellow;
+    }
+    42.85% {
+      background-color: green;
+    }
+    57.14% {
+      background-color: blue;
+    }
+    71.42% {
+      background-color: indigo;
+    }
+    85.71% {
+      background-color: violet;
+    }
+    100% {
+      background-color: red;
+    }
+  }
+</style>
+</head>
+<body>
+
+<button class="rotating-button" onclick="createNewButton()">Click me</button>
+
+<script>
+  function createNewButton() {
+    const originalButton = document.querySelector('.rotating-button');
+    const newButton = originalButton.cloneNode(true);
+    newButton.classList.add('rotating');
+
+    document.body.appendChild(newButton);
+  }
+</script>
+
+</body>
 </html>
